@@ -8,11 +8,19 @@
    </head>
    <body>
       <header class="site-header">
-         <div class="logo" style="font-weight: 400; letter-spacing: 0.04em">VINCENT WANG</div>
-         <nav class="nav">
-            <a href="art.html">Art</a>
+        <div class="logo" style="font-weight: 400; letter-spacing: 0.04em">VINCENT WANG</div>
+
+        <nav class="nav">
+          <a href="art.html">Art</a>
+
+          <div class="nav-item dropdown">
             <a href="photography.html" class="active">Photography</a>
-         </nav>
+            <div class="dropdown-menu">
+              <a href="photo-landscape.html">Landscape</a>
+              <a href="photo-sports.html">Sports</a>
+            </div>
+          </div>
+        </nav>
       </header>
 
   <main id="home">
@@ -22,61 +30,72 @@
 
     <section id="art" class="gallery-section">
       <div class="section-head">
-        <h2>Artwork</h2>
-        <p>Illustration, character work, environments, and experiments.</p>
+        <h2>Random</h2>
+        <p>Cool pics I like to take</p>
       </div>
 
-      <div class="gallery masonry">
-        <a href="assets/art/art1.jpg" class="gallery-item tall" target="_blank">
-          <img src="assets/art/art1.jpg" alt="Artwork 1" loading="lazy" />
-        </a>
-        <a href="assets/art/art2.jpg" class="gallery-item wide" target="_blank">
-          <img src="assets/art/art2.jpg" alt="Artwork 2" loading="lazy" />
-        </a>
-        <a href="assets/art/art3.jpg" class="gallery-item" target="_blank">
-          <img src="assets/art/art3.jpg" alt="Artwork 3" loading="lazy" />
-        </a>
-        <a href="assets/art/art4.jpg" class="gallery-item" target="_blank">
-          <img src="assets/art/art4.jpg" alt="Artwork 4" loading="lazy" />
-        </a>
-        <a href="assets/art/art5.jpg" class="gallery-item tall" target="_blank">
-          <img src="assets/art/art5.jpg" alt="Artwork 5" loading="lazy" />
-        </a>
-        <a href="assets/art/art6.jpg" class="gallery-item wide" target="_blank">
-          <img src="assets/art/art6.jpg" alt="Artwork 6" loading="lazy" />
-        </a>
+      <div class="gallery">
+        <div class="gallery-item landscape">
+          <img src="assets/photo/el-capitan.jpg" alt="Artwork 1" loading="lazy" style="object-position: center 20%;"/>
+        </div>
+        <div class="gallery-item landscape">
+          <img src="assets/photo/stairs.jpg" alt="Artwork 1" loading="lazy" />
+        </div>
+        <div class="gallery-item landscape">
+          <img src="assets/photo/fisher.jpg" alt="Artwork 1" loading="lazy" />
+        </div>
+        <div class="gallery-item landscape">
+          <img src="assets/photo/moody-stairs.jpg" alt="Artwork 1" loading="lazy" />
+        </div>
+        <div class="gallery-item landscape">
+          <img src="assets/photo/clouds.jpg" alt="Artwork 1" loading="lazy" />
+        </div>
       </div>
-    </section>
-
-    <section id="photo" class="gallery-section alt-bg">
-      <div class="section-head">
-        <h2>Photography</h2>
-        <p>Street, landscapes, travel, and everyday light.</p>
-      </div>
-
-      <div class="gallery standard-grid">
-        <a href="assets/photo/photo1.jpg" class="gallery-item" target="_blank">
-          <img src="assets/photo/photo1.jpg" alt="Photo 1" loading="lazy" />
-        </a>
-        <a href="assets/photo/photo2.jpg" class="gallery-item" target="_blank">
-          <img src="assets/photo/photo2.jpg" alt="Photo 2" loading="lazy" />
-        </a>
-        <a href="assets/photo/photo3.jpg" class="gallery-item" target="_blank">
-          <img src="assets/photo/photo3.jpg" alt="Photo 3" loading="lazy" />
-        </a>
-        <a href="assets/photo/photo4.jpg" class="gallery-item" target="_blank">
-          <img src="assets/photo/photo4.jpg" alt="Photo 4" loading="lazy" />
-        </a>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <h2>About</h2>
-      <p>
-        I use this space to share hobby work in art and photography.
-        This page is built with simple HTML and CSS for GitHub Pages.
-      </p>
     </section>
   </main>
+      <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+
+        <div class="lightbox-content">
+          <img class="lightbox-image" id="lightbox-image" src="" alt="" />
+          <p class="lightbox-caption" id="lightbox-caption"></p>
+        </div>
+      </div>
+      <script>
+         const lightbox = document.getElementById("lightbox");
+         const lightboxImage = document.getElementById("lightbox-image");
+         const closeBtn = document.getElementById("lightbox-close");
+         const galleryImages = document.querySelectorAll(".gallery-item img");
+         const caption = document.getElementById("lightbox-caption");
+         
+         galleryImages.forEach((img) => {
+           img.addEventListener("click", () => {
+             lightboxImage.src = img.src;
+             lightboxImage.alt = img.alt;
+             caption.textContent = img.dataset.caption || "";
+             lightbox.classList.add("active");
+           });
+         });
+         
+         closeBtn.addEventListener("click", () => {
+           lightbox.classList.remove("active");
+           lightboxImage.src = "";
+           caption.textContent = "";
+         });
+         
+         lightbox.addEventListener("click", (e) => {
+           if (e.target === lightbox) {
+             lightbox.classList.remove("active");
+             lightboxImage.src = "";
+           }
+         });
+         
+         document.addEventListener("keydown", (e) => {
+           if (e.key === "Escape") {
+             lightbox.classList.remove("active");
+             lightboxImage.src = "";
+           }
+         });
+      </script>
 </body>
 </html>
