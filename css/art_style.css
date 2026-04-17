@@ -127,7 +127,7 @@ body {
   width: 100%;
   margin: 0;
   overflow: hidden;
-  height: 100vh;
+  height: 90vh;
 }
 
 .hero img {
@@ -157,8 +157,44 @@ body {
   color: #eaeaea;
 }
 
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.scroll-indicator a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.arrow {
+  margin: 6px auto 0;
+  width: 16px;
+  height: 16px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-45deg); }
+  50% { transform: translateY(6px) rotate(-45deg); }
+}
+
 /* Sections */
-.gallery-section,
+.gallery-section {
+  min-height: 100vh;
+  padding-top: 10vh;
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto 72px;
+}
+
 .about {
   width: min(1400px, calc(100% - 48px));
   margin: 0 auto 72px;
