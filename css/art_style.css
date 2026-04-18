@@ -331,7 +331,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .hero img {
+  .hero {
     height: 55vh;
   }
 
@@ -339,6 +339,11 @@ body {
   .about,
   .hero {
     width: calc(100% - 24px);
+  }
+
+  .volleyball-photo .hero {
+    height: 90vh;
+    width: 100%;
   }
 
   .gallery {
