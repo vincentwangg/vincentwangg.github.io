@@ -31,7 +31,7 @@
           </picture>
         </section>
          <div class="scroll-indicator">
-          <a href="#gallery">
+          <a href="#" id="scrollToGallery">
             <span>View Work</span>
             <div class="arrow"></div>
           </a>
@@ -108,6 +108,14 @@
         </div>
       </div>
       <script>
+        document.getElementById("scrollToGallery").addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.getElementById("gallery").scrollIntoView({
+            behavior: "smooth"
+          });
+        });
+
          const lightbox = document.getElementById("lightbox");
          const lightboxImage = document.getElementById("lightbox-image");
          const closeBtn = document.getElementById("lightbox-close");
